@@ -1,10 +1,6 @@
 package com.roncoo.eshop.product.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import com.roncoo.eshop.product.model.ProductSpecification;
 
@@ -20,10 +16,16 @@ public interface ProductSpecificationMapper {
 	@Delete("DELETE FROM product_specification WHERE id=#{id}")  
 	public void delete(Long id);
 	
-	@Select("SELECT * FROM product_specification WHERE id=#{id}")  
+	@Select("SELECT * FROM product_specification WHERE id=#{id}")
+	@Results({
+			@Result(column = "product_id", property = "productId")
+	})
 	public ProductSpecification findById(Long id);
 	
-	@Select("SELECT * FROM product_specification WHERE product_id=#{productId}")  
+	@Select("SELECT * FROM product_specification WHERE product_id=#{productId}")
+	@Results({
+			@Result(column = "product_id", property = "productId")
+	})
 	public ProductSpecification findByProductId(Long productId);
 	
 }

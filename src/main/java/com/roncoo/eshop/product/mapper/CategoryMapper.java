@@ -20,7 +20,7 @@ public interface CategoryMapper {
 	@Delete("DELETE FROM category WHERE id=#{id}")  
 	public void delete(Long id);
 	
-	@Select("SELECT * FROM category WHERE id=#{id}")  
+	@Select("SELECT * FROM category WHERE id=#{id}")
 	public Category findById(Long id);
 	
 }

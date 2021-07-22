@@ -2,12 +2,7 @@ package com.roncoo.eshop.product.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import com.roncoo.eshop.product.model.Brand;
 
@@ -23,10 +18,18 @@ public interface BrandMapper {
 	@Delete("DELETE FROM brand WHERE id=#{id}")  
 	public void delete(Long id);
 	
-	@Select("SELECT * FROM brand WHERE id=#{id}")  
+	@Select("SELECT * FROM brand WHERE id=#{id}")
+	@Results({
+			@Result(column = "category_id", property = "categoryId"),
+			@Result(column = "brand_id", property = "brandId")
+	})
 	public Brand findById(Long id);
 	
 	@Select("SELECT * FROM brand WHERE id in (${ids})")
+	@Results({
+			@Result(column = "category_id", property = "categoryId"),
+			@Result(column = "brand_id", property = "brandId")
+	})
 	public List<Brand> findByIds(@Param("ids") String ids);
 	
 }

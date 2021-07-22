@@ -1,10 +1,6 @@
 package com.roncoo.eshop.product.mapper;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import com.roncoo.eshop.product.model.ProductIntro;
 
@@ -20,7 +16,10 @@ public interface ProductIntroMapper {
 	@Delete("DELETE FROM product_intro WHERE id=#{id}")  
 	public void delete(Long id);
 	
-	@Select("SELECT * FROM product_intro WHERE id=#{id}")  
+	@Select("SELECT * FROM product_intro WHERE id=#{id}")
+	@Results({
+			@Result(column = "product_id", property = "productId")
+	})
 	public ProductIntro findById(Long id);
 	
 }
