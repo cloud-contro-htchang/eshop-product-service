@@ -19,17 +19,11 @@ public interface BrandMapper {
 	public void delete(Long id);
 	
 	@Select("SELECT * FROM brand WHERE id=#{id}")
-	@Results({
-			@Result(column = "category_id", property = "categoryId"),
-			@Result(column = "brand_id", property = "brandId")
-	})
+
 	public Brand findById(Long id);
 	
 	@Select("SELECT * FROM brand WHERE id in (${ids})")
-	@Results({
-			@Result(column = "category_id", property = "categoryId"),
-			@Result(column = "brand_id", property = "brandId")
-	})
+
 	public List<Brand> findByIds(@Param("ids") String ids);
 	
 }
